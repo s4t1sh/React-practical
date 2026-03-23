@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsersRequest, loadBookmarks, resetUsers, setSearchTerm } from '../../actions/userActions';
+import { fetchUsers, loadBookmarks, resetUsers, setSearchTerm } from '../../store/userSlice';
 import SearchBar from '../../components/SearchBar';
 import UserList from '../../components/UserList';
 import TabNavigation from '../../components/TabNavigation';
@@ -16,7 +16,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(loadBookmarks());
     if (users.length === 0) {
-      dispatch(fetchUsersRequest());
+      dispatch(fetchUsers(0));
     }
   }, [dispatch, users.length]);
 
@@ -33,11 +33,11 @@ const Home = () => {
     dispatch(setSearchTerm(''));
     setActiveTab('users');
     dispatch(resetUsers());
-    dispatch(fetchUsersRequest(0));
+    dispatch(fetchUsers(0));
   };
 
   const handleLoadMore = () => {
-    dispatch(fetchUsersRequest(since));
+    dispatch(fetchUsers(since));
   };
 
   return (

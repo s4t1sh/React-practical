@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { setSearchTerm } from '../../actions/userActions';
+import { setSearchTerm } from '../../store/userSlice';
 import debounce from 'lodash/debounce';
 
 
